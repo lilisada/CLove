@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, onUnmounted } from 'vue'; // 新增onUnmounted导入
+import { onMounted, reactive, ref, onUnmounted } from 'vue'; 
 
 // 樱花飘落效果优化
 const sakuras = ref([]);
@@ -78,6 +78,17 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* 全局重置默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
 .success-container {
   position: relative;
   width: 100vw;
@@ -91,7 +102,7 @@ onUnmounted(() => {
   width: 20px;
   height: 20px;
   animation: fall linear infinite;
-  will-change: transform, opacity; /* 提前告知浏览器优化 */
+  will-change: transform, opacity; 
 }
 
 .petal {
@@ -128,7 +139,7 @@ onUnmounted(() => {
   width: 2px;
   height: 40px;
   background: #ffd700;
-  animation: firework 2.5s ease-out; /* 缩短烟花动画时间 */
+  animation: firework 2.5s ease-out; 
   will-change: transform, opacity;
 }
 
@@ -154,11 +165,13 @@ onUnmounted(() => {
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 1;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .message-container h1 {
   font-family: 'Brush Script MT', cursive;
-  font-size: 48px;
+  font-size: clamp(32px, 6vw, 48px);
   color: #ff69b4;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -166,8 +179,19 @@ onUnmounted(() => {
 
 .message-container p {
   font-family: 'Brush Script MT', cursive;
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 24px);
   color: #333;
   line-height: 1.6;
 }
-</style>
+
+/* 针对小屏幕设备（如手机）的媒体查询 */
+@media (max-width: 767px) {
+  .message-container h1 {
+    font-size: 32px;
+  }
+
+  .message-container p {
+    font-size: 18px;
+  }
+}
+</style>    
