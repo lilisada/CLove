@@ -86,7 +86,7 @@ const showNextStep = () => {
     currentStep.value++;
   } else {
       isSuccess.value = true;
-      router.push({ name: 'success' }); 
+      router.push({ name: 'success' });
   }
 };
 </script>
@@ -122,7 +122,6 @@ html, body {
   height: 20px;
   animation: fall linear infinite;
 }
-
 :deep(.sakura .petal) {
   position: absolute;
   width: 10px;
@@ -261,4 +260,4 @@ html, body {
     font-size: 20px;
   }
 }
-</style>    
+</style>

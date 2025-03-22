@@ -17,23 +17,23 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, onUnmounted } from 'vue'; 
+import { onMounted, reactive, ref, onUnmounted } from 'vue';
 
 // 樱花飘落效果优化
 const sakuras = ref([]);
-const MAX_SAKURAS = 50; 
+const MAX_SAKURAS = 50;
 const createSakura = () => {
   if (sakuras.value.length >= MAX_SAKURAS) return;
-  
+
   const left = Math.random() * window.innerWidth + 'px';
-  const animationDuration = (Math.random() * 8 + 4) + 's'; 
+  const animationDuration = (Math.random() * 8 + 4) + 's';
   const petals = [];
   const petalCount = 3;
   for (let i = 0; i < petalCount; i++) {
     petals.push({ rotation: i * (360 / petalCount) });
   }
   sakuras.value.push({ left, animationDuration, petals });
-  
+
   setTimeout(() => {
     const index = sakuras.value.findIndex(s => s.left === left && s.animationDuration === animationDuration);
     if (index !== -1) {
@@ -50,14 +50,14 @@ const animateSakura = () => {
 
 // 烟花特效优化
 const fireworks = reactive([]);
-const MAX_FIREWORKS = 20; 
+const MAX_FIREWORKS = 20;
 const createFirework = () => {
   if (fireworks.length >= MAX_FIREWORKS) return;
-  
+
   const left = Math.random() * window.innerWidth + 'px';
   const delay = (Math.random() * 1.5) + 's';
   fireworks.push({ left, delay });
-  
+
   setTimeout(() => {
     const index = fireworks.findIndex(f => f.left === left && f.delay === delay);
     if (index !== -1) {
@@ -102,7 +102,7 @@ html, body {
   width: 20px;
   height: 20px;
   animation: fall linear infinite;
-  will-change: transform, opacity; 
+  will-change: transform, opacity;
 }
 
 .petal {
@@ -139,7 +139,7 @@ html, body {
   width: 2px;
   height: 40px;
   background: #ffd700;
-  animation: firework 2.5s ease-out; 
+  animation: firework 2.5s ease-out;
   will-change: transform, opacity;
 }
 
@@ -194,4 +194,4 @@ html, body {
     font-size: 18px;
   }
 }
-</style>    
+</style>
